@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { QuizContext } from './componentes/context/quiz';
-import './Question.css'
+import './Questions.css'
+import Option from './Options'
 
 const Question = () => {
     const [quizState, dispatch] = useContext(QuizContext);
-    const currentQuestion = quizState.questions[quizState.currentQuestion];
+    const currentQuestion = quizState.question[quizState.currentQuestion];
   
     const onSelectOption = (option) => {
       dispatch({
@@ -18,7 +19,7 @@ const Question = () => {
     return (
       <div id="question">
         <p>
-          Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}
+          Pergunta {quizState.currentQuestion + 1} de {quizState.question.length}
         </p>
         <h2>{currentQuestion.question}</h2>
         <div id="options-container">
@@ -38,7 +39,7 @@ const Question = () => {
               <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
             )}
             <button onClick={() => dispatch({ type: "REMOVE_OPTION" })}>
-              Excluir uma
+              Escolher
             </button>
           </>
         )}
